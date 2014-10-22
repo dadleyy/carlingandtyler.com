@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+- '0.10'
+install:
+- gem install sass
+- gem install bourbon
+- gem install neat
+- npm install bower -g
+- npm install grunt-cli -g
+- bower install
+- npm install
+script:
+- echo "building $TRAVIS_COMMIT"
+- grunt release
+after_success:
+- tar -cvzf "carling-$TRAVIS_COMMIT.tar.gz" ./public/
+- curl --ftp-create-dirs -T "carling-$TRAVIS_COMMIT.tar.gz" -u $FTP_USER:$FTP_PASS
+  "ftp://ftp.sizethreestudios.com/artifacts/carling/$TRAVIS_COMMIT.tar.gz"
+- curl --ftp-create-dirs -T "carling-$TRAVIS_COMMIT.tar.gz" -u $FTP_USER:$FTP_PASS
+  "ftp://ftp.sizethreestudios.com/artifacts/carling/latest.tar.gz"
+env:
+  global:
+  - secure: KnPZ6IB40FKgXXqSeSos0p80Hn4AdTfJN3V9ZWv93DdnijKvJqq64oSMHD9glZIOWEuxeQzgwgIPwF/OYHM1j+moqoJCqNz3/gZo30YtjWb6DRIm2e8xRUyVe/R8YBVEUp/PfCueaJv83uLLnLB/BFelVaKpC3bjgn06G3orI0Q=
+  - secure: SJ3bk1bnJBfABYsSTbmqIMBY2CtkFT+GqDyIwkv8o6R9mv1aC/kS82K11IjWTcQMR6mv0/U+/wdxtGw1ALeghD7OtS9eoxmUiolcRMEE4kQSlCjELpazTLIXD0U3c/G9tNer1ce2i2TqxB0vsVFjp+XzwOb99C5bu7PBu5FH+yw=

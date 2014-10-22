@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title(ct-page-title) carling and tyler
+    meta(name="description" value="")
+    meta(name="keywords" value="")
+    meta(name="viewport" content="width=device-width, user-scalable=no")
+    link(rel='stylesheet', href='/vendor/zocial/zocial.css', type='text/css')
+    link(rel='stylesheet', href='/vendor/ionicons/css/ionicons.css', type='text/css')
+    link(rel='stylesheet', href='/css/app.css', type='text/css')
+    // created by Danny Hadley (@dadleyy)
+  body
+    .page
+      div(ng-view)
+    if debug
+      script(type='text/javascript', src='/js/vendor.js')
+      script(type='text/javascript', src='/js/dist.js')
+    else
+      script(type='text/javascript', src='/js/app.min.js')
