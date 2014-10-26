@@ -1,0 +1,3 @@
+ct.controller 'HomeController', [() ->
+
+]

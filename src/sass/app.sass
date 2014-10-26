@@ -1,1 +1,52 @@
 @import "base"
+@import "shared/reset"
+@import "shared/typeography"
+
+body, html, .whole, [ng-view], [c-body-manager], .main-content
+  position: relative
+  min-width: 100%
+  min-height: 100%
+  height: 100%
+  width: 100%
+  font-family: $serif-font
+
+  .intro
+    z-index: 3
+ 
+  .main-content
+    z-index: 4
+    +clearfix
+
+    .nav
+      +transition(all 500ms ease)
+      float: left
+      height: 100%
+      z-index: 4
+      margin-left: -60px
+
+    .page
+      overflow: hidden
+      height: 100%
+
+.view
+  +transition(width 700ms ease)
+  +clearfix
+  overflow: hidden
+  width: 0%
+  height: 100%
+
+.whole.open
+
+  .view
+    width: 100%
+
+  .main-content
+    display: block
+
+    .nav
+      margin-left: 0px
+
+@import "directives/intro"
+@import "directives/navigation"
+@import "directives/bridal-map"
+@import "views/home"
