@@ -16,12 +16,10 @@ module.exports = function() {
   grunt.loadNpmTasks('grunt-contrib-concat');
 
   var vendor_libs = [
-        "bower_components/d3/d3.min.js",
         "bower_components/analytics/index.js",
         "bower_components/angular/angular.min.js",
         "bower_components/angular-route/angular-route.min.js",
-        "bower_components/angular-resource/angular-resource.min.js",
-        "bower_components/soundmanager2/script/soundmanager2-jsmin.js"
+        "bower_components/angular-resource/angular-resource.min.js"
       ],
       package_info = grunt.file.readJSON('package.json'),
       package_banner = [

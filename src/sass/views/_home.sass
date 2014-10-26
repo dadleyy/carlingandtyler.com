@@ -1,0 +1,20 @@
+.home.view
+  +clearfix
+  display: block
+
+  .geo,
+  .background
+    position: relative
+    height: 100%
+
+  .geo
+    background: darken($dark-color, 10)
+    float: left
+    width: 180px
+
+  .background
+    +filter(grayscale(100%))
+    overflow: hidden
+    background-image: url(http://rusticweddingchic.com/wp-content/uploads/2013/02/barn-wedding-Illinois.jpg)
+    background-size: cover
+    background-position: center center
