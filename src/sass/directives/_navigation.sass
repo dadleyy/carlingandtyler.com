@@ -3,3 +3,37 @@
   display: block
   width: 60px
   height: 100%
+
+  .top, .middle, .bottom
+    display: block
+    position: relative
+    height: 33%
+    width: 100%
+
+  .middle
+    +clearfix
+
+    .links
+      position: relative
+      list-style: none
+
+      li
+        width: 60px
+        height: 60px
+        
+        &.active
+
+          a.icon,
+          .icon:after
+            color: white
+
+      a.icon,
+      .icon:after
+        padding: 0
+        text-decoration: none
+        text-align: center
+        color: darken(white, 20)
+        width: 60px
+        height: 60px
+        line-height: 60px
+        font-size: 30px

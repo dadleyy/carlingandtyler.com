@@ -1,0 +1,17 @@
+.registries.view
+  position: relative
+  height: 100%
+  background: $dark-color
+
+  ul.registry-list
+    list-style: none
+    position: relative
+    overflow-y: scroll
+    height: 100%
+
+    li.registry
+      background: adjust-hue(lighten($dark-color, 10), 45)
+      border-bottom: 1px solid adjust-hue(lighten($dark-color, 15), 45)
+      height: 180px
+      width: 100%
+      display: block

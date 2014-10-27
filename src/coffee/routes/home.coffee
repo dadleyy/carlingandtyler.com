@@ -3,11 +3,12 @@ ct.config ['$routeProvider', ($routeProvider) ->
   homeRoute =
     templateUrl: 'views.home'
     controller: 'HomeController'
+    name: 'location'
     resolve:
       analytics: ['Analytics', (Analytics) ->
-        Analytics.track '/home'
+        Analytics.track '/location'
       ]
 
-  $routeProvider.when '/home', homeRoute
+  $routeProvider.when '/location', homeRoute
 
 ]
