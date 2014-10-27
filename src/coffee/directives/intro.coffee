@@ -15,6 +15,6 @@ ct.directive 'cIntro', ['$timeout', ($timeout) ->
 
       $timeout increment, 300
       $timeout increment, 800
-      $timeout increment, 2000
+      $timeout increment, 3000
 
 ]
