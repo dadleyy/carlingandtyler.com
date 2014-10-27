@@ -1,16 +1,26 @@
-.intro
-  +transition(all 800ms ease)
-  +transform(scale(1.2))
-  background-image: url(http://soundcityproject.com/assets/images/blurred-city.jpg)
-  background-size: cover
-  background-repeat: no-repeat
-  background-position: center center
+.intro, .bg
   display: block
   position: fixed
   top: 0
   left: 0
   width: 100%
   height: 100%
+
+  $image-url: "http://vermontweddingassociation.com/shows/mttop/wp-content/themes/Tersus/lib/scripts/timthumb.php?w=980&zc=0&src=http://vermontweddingassociation.com/shows/mttop/wp-content/uploads/2013/02/mttopriddell.jpg"
+  .background
+    +transition(all 800ms ease)
+    +transform(scale(1.2))
+    +filter(grayscale(100%) blur(2px) brightness(70%))
+    background-image: url($image-url)
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: center center
+
+    position: fixed
+    width: 100%
+    height: 100%
+    left: 0px
+    top: 0px
 
   .control
     margin: 20px auto

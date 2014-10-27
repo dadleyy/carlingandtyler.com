@@ -2,19 +2,62 @@
   +clearfix
   display: block
 
-  .geo,
+  .map,
   .background
     position: relative
     height: 100%
 
-  .geo
-    background: darken($dark-color, 10)
+  .left-side
+    +transition(width 200ms ease)
+    z-index: 3
     float: left
     width: 180px
+    height: 100%
+
+    &:hover
+      width: 200px
+
+  .map
+    z-index: 3
+    background: darken($dark-color, 10)
+    height: 80%
+
+  .text
+    position: relative
+    z-index: 4
+    background: $off-white-color
+    border-top: 1px solid darken($off-white-color, 40)
+    height: 20%
+    text-align: center
+    padding: 35px 0
+
+    h1.display
+      font-size: 20px
+      margin: 0 0 5px 0
+      text-transform: uppercase
+      color: darken($off-white-color, 60)
+
+    p.addr
+      color: darken($off-white-color, 40)
+
+    &:after
+      +transform(rotate(45deg))
+      content: ''
+      display: block
+      width: 10px
+      height: 10px
+      position: absolute
+      top: -5px
+      left: 50%
+      margin-left: -5px
+      background: darken($off-white-color, 40)
 
   .background
     +filter(grayscale(100%))
+    z-index: 4
     overflow: hidden
     background-image: url(http://rusticweddingchic.com/wp-content/uploads/2013/02/barn-wedding-Illinois.jpg)
+    box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75)
+    border-left: 1px solid rgba(255, 255, 255, 0.25)
     background-size: cover
     background-position: center center
