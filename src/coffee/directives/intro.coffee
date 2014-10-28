@@ -1,4 +1,4 @@
-ct.directive 'cIntro', ['$timeout', ($timeout) ->
+ct.directive 'cIntro', ['$timeout', '$route', '$location', ($timeout, $route, $location) ->
 
   cIntro =
     replace: true
@@ -11,10 +11,15 @@ ct.directive 'cIntro', ['$timeout', ($timeout) ->
       increment = () ->
         $scope.stage++
         if $scope.stage > 2
+          $scope.stage = 2
           body_manager.open()
+          $location.url '/location'
 
-      $timeout increment, 300
-      $timeout increment, 800
-      $timeout increment, 3000
+      start = () ->
+        $timeout increment, 300
+        $timeout increment, 800
+        $timeout increment, 3000
+
+      start()
 
 ]

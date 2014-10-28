@@ -1,2 +1,9 @@
 .navigation
-  .inner
+  .top
+  .middle
+    ul.links
+      li.location(ng-class="{active: current_location === 'location'}")
+        a.icon.ion.location(href="/location" title="location")
+      li.registries(ng-class="{active: current_location === 'registries'}")
+        a.icon.ion.gifts(href="/registries" title="registries")
+  .bottom

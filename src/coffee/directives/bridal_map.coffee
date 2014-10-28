@@ -20,5 +20,4 @@ ct.directive 'cBridalMap', ['GOOGLE', (GOOGLE) ->
         position: position
         map: map
 
-
 ]

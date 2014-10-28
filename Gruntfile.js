@@ -17,9 +17,9 @@ module.exports = function() {
 
   var vendor_libs = [
         "bower_components/analytics/index.js",
-        "bower_components/angular/angular.min.js",
-        "bower_components/angular-route/angular-route.min.js",
-        "bower_components/angular-resource/angular-resource.min.js"
+        "bower_components/angular/angular.js",
+        "bower_components/angular-route/angular-route.js",
+        "bower_components/angular-resource/angular-resource.js"
       ],
       package_info = grunt.file.readJSON('package.json'),
       package_banner = [

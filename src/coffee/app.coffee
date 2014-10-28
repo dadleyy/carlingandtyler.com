@@ -5,18 +5,7 @@ ct = do () ->
     data = response.data
     ct.value 'URLS', data.urls
     ct.value 'GOOGLE', data.google
-    ct.value 'BACKGROUND', data.background
-    if data.colors
-      ct.value 'COLORS', data.colors
-    else
-      ct.value 'COLORS',
-        tracks: {}
-        playlists: {}
-
-    if data.soundcloud and data.soundcloud.client_id
-      client_id = atob data.soundcloud.client_id
-      ct.value 'SOUNDCLOUD_KEY', client_id
-      ct.value 'SOUNDCLOUD_USER', data.soundcloud.user_id
+    ct.value 'REGISTRIES', data.registries
 
     angular.bootstrap document, ['ct']
 

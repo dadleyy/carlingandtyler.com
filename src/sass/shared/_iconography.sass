@@ -1,0 +1,28 @@
+.icon
+  width: 30px
+  height: 30px 
+  display: inline-block
+  position: relative
+  padding: 3px
+  background: transparent
+  border: none
+  outline: none
+
+  &:after
+    content: ''
+    font-family: 'zocial'
+    display: block
+    margin: 0 auto
+    color: black
+    font-size: 20px
+    line-height: 30px
+    position: relative
+
+  &.ion:after
+    font-family: "Ionicons"
+
+  &.location:after
+    content: '\f1ff'
+
+  &.gifts:after
+    content: '\f2aa'
