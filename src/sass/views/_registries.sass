@@ -9,9 +9,65 @@
     overflow-y: scroll
     height: 100%
 
-    li.registry
-      background: adjust-hue(lighten($dark-color, 10), 45)
-      border-bottom: 1px solid adjust-hue(lighten($dark-color, 15), 45)
-      height: 180px
+  li.registry
+    background: adjust-hue(lighten($dark-color, 10), 45)
+    border-bottom: 1px solid adjust-hue(lighten($dark-color, 15), 45)
+    height: 180px
+    position: relative
+    width: 100%
+    display: block
+
+    .background-image
+      +transition(all 400ms ease)
+      +filter(grayscale(100%) brightness(50%) blur(1px))
+      position: absolute
       width: 100%
-      display: block
+      height: 100%
+      background-size: cover
+      background-position: center center
+      background-repeat: no-repeat
+
+    .registry-text
+      position: relative
+      height: 100%
+      text-align: center
+
+    .registry-link
+      +transition(color 500ms ease)
+      display: inline
+      font-size: 70px
+      line-height: 180px
+      position: relative
+      text-decoration: none
+      color: darken(white, 25)
+      text-transform: uppercase
+
+      &:before,
+      &:after
+        +transition(all 400ms ease)
+        content: ''
+        display: block
+        position: absolute
+        width: 0%
+        height: 1px
+        background: darken(white, 20)
+
+      &:before
+        top: 0px
+        right: 0px
+
+      &:after
+        bottom: 0px
+        left: 0px
+
+      &:hover
+        color: darken(white, 15)
+
+        &:before,
+        &:after
+          width: 100%
+
+    &:hover
+      .background-image
+        +filter(grayscale(100%) brightness(50%) blur(0px) contrast(1.1))
+        
