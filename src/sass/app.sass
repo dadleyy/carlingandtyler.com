@@ -3,7 +3,7 @@
 @import "shared/typeography"
 @import "shared/iconography"
 
-body, html, .whole, [ng-view], [c-body-manager], .main-content
+body, html, .whole, [ng-view], [c-body-manager]
   position: relative
   min-width: 100%
   min-height: 100%
@@ -11,45 +11,30 @@ body, html, .whole, [ng-view], [c-body-manager], .main-content
   width: 100%
   font-family: $serif-font
 
-  .intro
-    z-index: 3
- 
-  .main-content
-    z-index: 4
-    +clearfix
-
-    .nav
-      +transition(all 500ms ease)
-      float: left
-      height: 100%
-      z-index: 4
-      margin-left: -60px
-
-    .page
-      overflow: hidden
-      height: 100%
-
-.view
-  +transition(width 700ms ease)
+.whole
   +clearfix
+
+.navigation
+  +transition(all 500ms ease)
+  float: left
+  height: 100%
+  z-index: 4
+
+.page-content
   overflow: hidden
-  width: 0%
   height: 100%
 
-.whole.open
+.view, .view-buffer
+  +clearfix
+  overflow: hidden
+  width: 100%
+  height: 100%
 
-  .view
-    width: 100%
-
-  .main-content
-    display: block
-
-    .nav
-      margin-left: 0px
-
+@import "directives/twit"
 @import "directives/intro"
 @import "directives/navigation"
 @import "directives/bridal-map"
 @import "directives/view-buffer"
 @import "views/home"
+@import "views/feed"
 @import "views/registries"

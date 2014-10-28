@@ -19,7 +19,8 @@ module.exports = function() {
         "bower_components/analytics/index.js",
         "bower_components/angular/angular.js",
         "bower_components/angular-route/angular-route.js",
-        "bower_components/angular-resource/angular-resource.js"
+        "bower_components/angular-resource/angular-resource.js",
+        "bower_components/masonry/dist/masonry.pkgd.js"
       ],
       package_info = grunt.file.readJSON('package.json'),
       package_banner = [

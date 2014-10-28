@@ -13,27 +13,36 @@
   .middle
     +clearfix
 
+  .bottom
+    display: block
+    position: relative
+
     .links
-      position: relative
-      list-style: none
+      position: absolute
+      bottom: 0px
+      left: 0px
 
-      li
-        width: 60px
-        height: 60px
-        
-        &.active
+  .links
+    position: relative
+    list-style: none
 
-          a.icon,
-          .icon:after
-            color: adjust_hue(desaturate(lighten(#fae555, 23), 5), 160)
+    li
+      width: 60px
+      height: 60px
+      
+      &.active
 
-      a.icon,
-      .icon:after
-        padding: 0
-        text-decoration: none
-        text-align: center
-        color: darken(white, 40)
-        width: 60px
-        height: 60px
-        line-height: 60px
-        font-size: 30px
+        a.icon,
+        .icon:after
+          color: adjust_hue(desaturate(lighten(#fae555, 23), 5), 160)
+
+    a.icon,
+    .icon:after
+      padding: 0
+      text-decoration: none
+      text-align: center
+      color: darken(white, 40)
+      width: 60px
+      height: 60px
+      line-height: 60px
+      font-size: 30px

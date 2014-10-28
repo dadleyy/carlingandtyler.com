@@ -17,10 +17,9 @@ ct.directive 'cBodyManager', ['$rootScope', ($rootScope) ->
       update = (evt, route_info) ->
         if route_info.$$route
           is_intro = /intro/i.test route_info.$$route.name
-
           if !is_intro
             $controller.open()
 
-      $rootScope.$on '$routeChangeSuccess', update
+      $rootScope.$on '$routeChangeStart', update
 
 ]
