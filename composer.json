@@ -1,0 +1,12 @@
+{
+  "name": "sizethree/carling",
+  "description": "website for carling and tyler's wedding",
+  "authors": [{
+    "name": "Danny Hadley",
+    "email": "dadley@sizethreestudios.com"
+  }],
+  "require": {
+    "slim/slim": "2.*",
+    "guzzlehttp/guzzle": "~5.0"
+  }
+}
