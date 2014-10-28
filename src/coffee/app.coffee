@@ -6,6 +6,7 @@ ct = do () ->
     ct.value 'URLS', data.urls
     ct.value 'GOOGLE', data.google
     ct.value 'REGISTRIES', data.registries
+    ct.value 'TWITTER', data.twitter
 
     angular.bootstrap document, ['ct']
 

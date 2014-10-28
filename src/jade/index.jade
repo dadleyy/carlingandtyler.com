@@ -12,11 +12,10 @@ html
     // created by Danny Hadley (@dadleyy)
   body
     .whole(c-body-manager)
-      .main-content
-        .nav(c-navigation)
-        .page
-          div(c-view-buffer)
-          div(c-view-buffer)
+      .navigation(c-navigation)
+      .page-content
+        div(c-view-buffer)
+        div(c-view-buffer)
     script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA53ekcC5mSOJkzy0-9saNaJB1q2VlRKYU")
     script(type="text/javascript" src="http://fast.fonts.net/jsapi/e207413a-e39f-45ff-9462-1cff780cac7c.js")
     if debug

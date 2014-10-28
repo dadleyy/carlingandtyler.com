@@ -1,4 +1,4 @@
-ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', ($rootScope, $route, $compile, $controller) ->
+ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', '$timeout', ($rootScope, $route, $compile, $controller, $timeout) ->
   
   exists = angular.isDefined
   current_element = null
@@ -15,6 +15,9 @@ ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', 
     active_buffer = available_buffers[active_index]
     if active_buffer
       swap()
+
+  finish = () ->
+    $rootScope.$broadcast 'viewswap:complete'
 
   swap = () ->
     active_buffer = available_buffers[active_index]
@@ -40,6 +43,7 @@ ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', 
         $element.children().data '$ngControllerController', new_controller
 
       new_element = link_fn new_scope
+      $timeout finish
       current_scope = new_scope
 
   class ViewBuffer

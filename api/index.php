@@ -3,10 +3,19 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use \Slim\Slim as Application;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
+use \GuzzleHttp\Client;
+use \GuzzleHttp\Exception\ClientException;
 
-Dotenv::load(__DIR__ . '/../');
+function loadEnv() {
+  $env_path = __DIR__ . '/../.env';
+  $lines = file($env_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+  foreach($lines as $line) {
+    if(strpos($line, '=') !== false) {
+      list($name, $value) = array_map('trim', explode('=', $line, 2));
+      $_ENV[$name] = $value;
+    }
+  }
+}
 
 $app = new Application();
 
@@ -19,6 +28,7 @@ function getAuthHeader() {
 }
 
 $app->get('/tweets/:query', function ($query) { 
+  loadEnv();
   $client = new Client();
   $auth_header = getAuthHeader();
   $api_home = "https://api.twitter.com";

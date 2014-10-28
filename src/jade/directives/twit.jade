@@ -1,0 +1,7 @@
+.twit()
+  .author-container
+    p.author.plain @{{twit.user.screen_name}}
+  .text-container
+    p.twit-text.plain.bold {{twit.text}}
+  .background(style="background-image: url({{image()}})")
+  a.image-link.ion.icon.link(href="{{image()}}" title="")
