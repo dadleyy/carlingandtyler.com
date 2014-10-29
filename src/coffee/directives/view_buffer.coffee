@@ -4,17 +4,30 @@ ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', 
   current_element = null
   current_scope = null
   available_buffers = []
-  active_index = 0
+  active_index = -1
 
   cleanup = () ->
     if current_scope
       current_scope.$destroy()
       current_scope = null
 
+  increment = () ->
+    active_index++
+    if active_index > (available_buffers.length - 1)
+      active_index = 0
+
   update = () ->
     active_buffer = available_buffers[active_index]
+
+    remove = () ->
+      active_buffer.scope.state = 0
+
     if active_buffer
-      swap()
+      active_buffer.scope.state = 1
+      $timeout remove, 1000
+
+    increment()
+    swap()
 
   finish = () ->
     $rootScope.$broadcast 'viewswap:complete'
@@ -26,7 +39,7 @@ ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', 
     template = if locals then locals.$template else false
     $element = active_buffer.element
     $scope = active_buffer.scope
-    $scope.active = true
+    $scope.state = 2
 
     if template != false and exists template
       cleanup()
@@ -57,8 +70,9 @@ ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', 
     templateUrl: 'directives.view_buffer'
     transclude: 'element'
     controller: ViewBuffer
+    scope: {}
     link: ($scope, $element, $attrs, $controller, $transclude) ->
-      $scope.active = false
+      $scope.state = 0
       available_buffers.push $controller
 
   $rootScope.$on '$routeChangeSuccess', update
