@@ -5,6 +5,7 @@ ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', 
   current_scope = null
   available_buffers = []
   active_index = -1
+  garbage_to = null
 
   cleanup = () ->
     if current_scope
@@ -24,7 +25,11 @@ ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', 
 
     if active_buffer
       active_buffer.scope.state = 1
-      $timeout remove, 1000
+
+      if garbage_to
+        $timeout.cancel garbage_to
+
+      garbage_to = $timeout remove, 1000
 
     increment()
     swap()
