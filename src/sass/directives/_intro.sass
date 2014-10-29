@@ -1,3 +1,11 @@
+.intro
+  +transition(opacity 1500ms ease)
+  opacity: 0.0
+
+  &[data-stage="1"],
+  &[data-stage="2"]
+    opacity: 1.0
+
 .intro, .bg
   display: block
   position: fixed

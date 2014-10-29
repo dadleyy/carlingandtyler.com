@@ -10,19 +10,30 @@ body, html, .whole, [ng-view], [c-body-manager]
   height: 100%
   width: 100%
   font-family: $serif-font
+  background: $dark-color
 
 .whole
   +clearfix
 
-.navigation
-  +transition(all 500ms ease)
-  float: left
-  height: 100%
-  z-index: 4
+  .navigation
+    +transition(all 500ms ease)
+    +transform(translateX(-60px))
+    width: 0px
+    float: left
+    height: 100%
+    z-index: 4
+    position: relative
+
+  &.open
+    
+    .navigation
+      +transform(translateX(0px))
+      width: 60px
 
 .page-content
   overflow: hidden
   height: 100%
+  z-index: 3
 
 .view, .view-buffer
   +clearfix
@@ -37,4 +48,5 @@ body, html, .whole, [ng-view], [c-body-manager]
 @import "directives/view-buffer"
 @import "views/home"
 @import "views/feed"
+@import "views/intro"
 @import "views/registries"
