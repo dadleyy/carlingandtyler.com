@@ -22,6 +22,13 @@ module.exports = function() {
         "bower_components/angular-resource/angular-resource.js",
         "bower_components/masonry/dist/masonry.pkgd.js"
       ],
+      vendor_min_libs = [
+        "bower_components/analytics/index.js",
+        "bower_components/angular/angular.min.js",
+        "bower_components/angular-route/angular-route.min.js",
+        "bower_components/angular-resource/angular-resource.min.js",
+        "bower_components/masonry/dist/masonry.pkgd.js"
+      ],
       package_info = grunt.file.readJSON('package.json'),
       package_banner = [
         '/*!', 
@@ -125,12 +132,16 @@ module.exports = function() {
         src: vendor_libs,
         dest: 'public/js/vendor.js'
       },
+      vendor_min: {
+        src: vendor_min_libs,
+        dest: 'public/js/vendor.min.js'
+      },
       release: {
         options: {
           banner: package_banner
         },
         src: [
-          'public/js/vendor.js',
+          'public/js/vendor.min.js',
           'public/js/dist.min.js'
         ],
         dest: 'public/js/app.min.js'
@@ -213,6 +224,6 @@ module.exports = function() {
   grunt.registerTask('js', ['coffee', 'jade:debug', 'ngtemplates', 'concat:vendor', 'concat:dist']);
   grunt.registerTask('css', ['sass']);
   grunt.registerTask('default', ['css', 'coffee', 'js', 'css', 'copy']);
-  grunt.registerTask('release', ['default', 'jade:release', 'uglify', 'concat:release']);
+  grunt.registerTask('release', ['default', 'jade:release', 'uglify', 'concat:vendor_min', 'concat:release']);
 
 };
