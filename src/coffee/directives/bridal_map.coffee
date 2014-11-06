@@ -1,4 +1,4 @@
-ct.directive 'cBridalMap', ['GOOGLE', (GOOGLE) ->
+ct.directive 'cBridalMap', ['GOOGLE', '$timeout', (GOOGLE, $timeout) ->
   
   map_style = GOOGLE.map_style
 
@@ -15,9 +15,31 @@ ct.directive 'cBridalMap', ['GOOGLE', (GOOGLE) ->
     replace: true
     templateUrl: 'directives.bridal_map'
     link: ($scope, $element, $attrs) ->
-      map = new google.maps.Map $element[0], map_config
+      content_el = $element[0].childNodes[2]
+
+      $scope.hovering = false
+      $scope.pulled = false
+
+      map = new google.maps.Map content_el, map_config
+
       marker = new google.maps.Marker
         position: position
         map: map
+        icon: GOOGLE.icon
+
+      resize = () ->
+        google.maps.event.trigger map, 'resize'
+
+      $scope.enter = () ->
+        $timeout resize, 400
+
+      $scope.leave = () ->
+        $timeout resize, 400
+
+      $scope.pulldown = () ->
+        $scope.pulled = !$scope.pulled
+
+      google.maps.event.addListener marker, 'mouseover', over
+      google.maps.event.addListener marker, 'mouseout', out
 
 ]
