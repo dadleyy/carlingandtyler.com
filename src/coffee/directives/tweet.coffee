@@ -10,6 +10,9 @@ ct.directive 'cTwit', [() ->
       feed_controller = $controller
 
       $scope.image = () ->
-        $scope.twit.entities.media[0].media_url
+        if $scope.twit.entities and angular.isArray $scope.twit.entities.media
+          $scope.twit.entities.media[0].media_url
+        else
+          ''
 
 ]

@@ -17,12 +17,18 @@ ct.directive 'cFeed', ['Viewport', '$timeout', (Viewport, $timeout) ->
       @scope.styles = new Array @scope.items.length
 
       itemWidth = (item) ->
-        item_media = item.entities.media[0]
-        item_media.sizes.medium.w
+        if angular.isArray item.entities.media
+          item_media = item.entities.media[0]
+          item_media.sizes.medium.w
+        else
+          0
       
       itemHeight = (item) ->
-        item_media = item.entities.media[0]
-        item_media.sizes.medium.h
+        if angular.isArray item.entities.media
+          item_media = item.entities.media[0]
+          item_media.sizes.medium.h
+        else
+          0
 
       position = (feed_item, item_index) ->
         lowest_height = Infinity
