@@ -53,7 +53,8 @@ module.exports = function() {
 
     clean: {
       all: [
-        'obj', 
+        'obj',
+        'public/images',
         'public/js', 
         'public/css', 
         'public/index.html',
@@ -149,6 +150,12 @@ module.exports = function() {
     },
 
     copy: {
+      images: {
+        expand: true,
+        cwd: 'src/images',
+        src: '**/*',
+        dest: 'public/images'
+      },
       ionicons: {
         expand: true,
         cwd: 'bower_components/ionicons',
