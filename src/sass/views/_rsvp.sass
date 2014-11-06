@@ -14,11 +14,33 @@
     height: 100%
     text-align: center
 
+  h2.count,
   h1.title
     text-align: center
     font-size: 60px
-    color: darken(white, 20)
+    color: darken(white, 45)
     text-transform: uppercase
+
+  .input-container.has_saved
+    display: none
+
+  .invalid .invalid-email
+    color: #ebb3a8
+    margin: 0 0 10px 0
+
+  .thanks
+    display: none
+
+    &.has_saved
+      display: block
+
+  .thanks p
+    font-size: 80px
+    color: darken(white, 10)
+
+  h2.count
+    margin: 15px 0 0 0
+    font-size: 12px
 
   input[type="text"]
     box-sizing: border-box

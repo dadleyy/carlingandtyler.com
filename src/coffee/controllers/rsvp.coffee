@@ -1,5 +1,6 @@
-ct.controller 'RsvpController', ['$scope', ($scope) ->
+ct.controller 'RsvpController', ['$scope', 'guests', ($scope, guests) ->
 
+  $scope.guests = guests
 
 ]
 
