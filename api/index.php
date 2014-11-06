@@ -27,6 +27,83 @@ function getAuthHeader() {
   return "Basic " . $encoded_app_auth;
 }
 
+function getConnection() {
+  $mysql_host_string = 'host='.$_ENV['MYSQL_HOST'];
+  $mysql_db_string = 'dbname='.$_ENV['MYSQL_DATABASE'];
+  $mysql_connection_string = 'mysql:'.$mysql_host_string.';'.$mysql_db_string;
+  $mysql_username = $_ENV['MYSQL_USERNAME'];
+  $mysql_password = $_ENV['MYSQL_PASSWORD'];
+  $mysql_connection_params = array(PDO::ATTR_PERSISTENT => false);
+  $mysql_connection = new PDO($mysql_connection_string, $mysql_username, $mysql_password, $mysql_connection_params);
+  $mysql_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  return $mysql_connection;
+}
+
+$app->get('/rsvp', function() use($app) {
+  loadEnv();
+
+  $results = NULL;
+  try {
+    $mysql_connection = getConnection();
+    $stmt = $mysql_connection->prepare("SELECT id, email from rsvp");
+    $stmt->execute();
+    $results = $stmt->fetchAll();
+  } catch(Exception $e) {
+    $app->response->setStatus(422);
+    $response_body = json_encode(array("error" => "failed get", "info" => $e));
+    $app->response->setBody($response_body);
+    return;
+  }
+
+  $cleaned = array();
+  foreach($results as $result) {
+    $cleaned[] = array(
+      "email" => $result['email'],
+      "id" => $result['id']
+    );
+  }
+
+  $app->response->setStatus(200);
+  $app->response->setBody(json_encode($cleaned));
+});
+
+$app->post('/rsvp', function() use($app) {
+  loadEnv();
+
+  $email = $app->request->post('email');
+  $body = $app->request->getBody();
+
+  if(!$email) {
+    $decoded = json_decode($body, true);
+    $email = $decoded['email'];
+  }
+
+  $is_valid = filter_var($email, FILTER_VALIDATE_EMAIL);
+  if(!$is_valid) {
+    $app->response->setStatus(422);
+    $response_body = json_encode(array("error" => 'invalid email', "email" => $email));
+    $app->response->setBody($response_body);
+    return;
+  }
+
+    $result = NULL;
+  try {
+    $mysql_connection = getConnection();
+    $stmt = $mysql_connection->prepare("INSERT INTO rsvp (email) VALUES (:email)");
+    $stmt->bindParam('email', $email);
+    $stmt->execute();
+  } catch(Exception $e) {
+    $app->response->setStatus(422);
+    $response_body = json_encode(array("error" => "failed saving", "info" => $e));
+    $app->response->setBody($response_body);
+    return;
+  }
+
+  $app->response->setStatus(200);
+  $response_body = json_encode(array("created" => $email));
+  $app->response->setBody($response_body);
+});
+
 $app->get('/tweets/:query', function ($query) { 
   loadEnv();
   $client = new Client();
