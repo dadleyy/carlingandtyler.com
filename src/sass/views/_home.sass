@@ -84,17 +84,33 @@
     width: 180px
     height: 100%
 
+    .instructions
+      +transition(height 500ms ease)
+      width: 400px
+      height: 0px
+
+    .pull-down .icon
+      +transition(opacity 500ms ease)
+      opacity: 0.0
+
     &:hover
-      width: 200px
+      width: 400px
+
+      .pull-down .icon
+        opacity: 1.0
+
+      .instructions.viewing
+        border-top: 1px solid darken($off-white-color, 40)
+        height: 80px
 
   .map
-    z-index: 3
+    z-index: 4
     background: darken($dark-color, 10)
     height: 80%
 
   .text
     position: relative
-    z-index: 4
+    z-index: 3
     background: $off-white-color
     border-top: 1px solid darken($off-white-color, 40)
     height: 20%
