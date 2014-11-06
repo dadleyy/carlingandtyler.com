@@ -25,7 +25,7 @@ ct.directive 'cBridalMap', ['GOOGLE', '$timeout', (GOOGLE, $timeout) ->
       marker = new google.maps.Marker
         position: position
         map: map
-        icon: GOOGLE.icon
+        icon: '/images/marker.svg'
 
       resize = () ->
         google.maps.event.trigger map, 'resize'
