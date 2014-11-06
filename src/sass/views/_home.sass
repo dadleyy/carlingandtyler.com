@@ -7,6 +7,76 @@
     position: relative
     height: 100%
 
+    .wedding-date
+      +clearfix
+      position: absolute
+      right: 20px
+      bottom: 20px
+      text-align: right
+      color: white
+      text-shadow: none
+
+      .month, .day
+        +transform(rotate(45deg))
+        position: absolute
+        overflow: visible
+        display: block
+        float: left
+        width: 80px
+        height: 80px
+        left: -80px
+        top: -80px
+
+        &.month
+          left: -140px
+          top: -100px
+          height: 104px
+          clip: rect(-38px, 75px, 100px, 0px)
+
+          h2.serif
+            font-size: 100px
+            margin-top: 5px
+          
+          &:after
+            content: ""
+            display: block
+            background: white
+            position: absolute
+            height: 128%
+            width: 1px
+            left: 74px
+            bottom: 0px
+
+        &.day
+          clip: rect(0px, 100px, 100px, 26px)
+
+          h2.serif
+            margin-top: 10px
+
+        h2.serif
+          +transform(rotate(-45deg))
+          display: block
+          font-size: 80px
+          width: 80px
+          height: 80px
+
+      .date
+        font-size: 60px
+
+      .large
+        position: relative
+        font-size: 80px
+        &:after
+          +transform(rotate(45deg))
+          content: ''
+          width: 1px
+          height: 20px
+          display: block
+          background: white
+          position: absolute
+          left: 0px
+          top: 0px
+
   .left-side
     +transition(width 200ms ease)
     z-index: 3
