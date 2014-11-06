@@ -5,7 +5,7 @@ DirectoryIndex index.html
   # Turn mod_rewrite on
   RewriteEngine On
   RewriteBase /
-  RewriteRule ^tweets\/(.*)$ http://api.carlingandtyler.com/tweets/$1 [P,L]
+  RewriteRule ^tweets\/(.*)$ http://local.api.carlingandtyler.com/tweets/$1 [P,L]
   RewriteRule ^api\/(.*)$ http://local.api.carlingandtyler.com/$1 [P,L]
 
   RewriteCond %{REQUEST_FILENAME} !-f

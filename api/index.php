@@ -136,7 +136,7 @@ $app->post('/rsvp', function() use($app) {
   $app->response->setBody($response_body);
 });
 
-$app->get('/tweets/:query', function ($query) { 
+$app->get('/tweets/:query', function ($query) use($app) {
   loadEnv();
   $app->response->headers->set('Content-Type', 'application/json');
 
