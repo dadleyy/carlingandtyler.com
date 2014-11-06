@@ -39,8 +39,33 @@ function getConnection() {
   return $mysql_connection;
 }
 
+$app->delete('/rsvp/:id', function($id) use ($app) {
+  loadEnv();
+  $app->response->headers->set('Content-Type', 'application/json');
+
+  try {
+    $mysql_connection = getConnection();
+    $stmt = $mysql_connection->prepare("DELETE FROM rsvp WHERE id = :id");
+    $stmt->bindParam('id', $id);
+    $stmt->execute();
+  } catch(Exception $e) {
+    $app->response->setStatus(422);
+    $response_body = json_encode(array("error" => "failed get", "info" => $e));
+    $app->response->setBody($response_body);
+    return;
+  }
+
+  $response_body = json_encode(array(
+    "status" => "ok"
+  ));
+
+  $app->response->setStatus(200);
+  $app->response->setBody($response_body);
+});
+
 $app->get('/rsvp', function() use($app) {
   loadEnv();
+  $app->response->headers->set('Content-Type', 'application/json');
 
   $results = NULL;
   try {
@@ -69,6 +94,7 @@ $app->get('/rsvp', function() use($app) {
 
 $app->post('/rsvp', function() use($app) {
   loadEnv();
+  $app->response->headers->set('Content-Type', 'application/json');
 
   $email = $app->request->post('email');
   $body = $app->request->getBody();
@@ -86,7 +112,8 @@ $app->post('/rsvp', function() use($app) {
     return;
   }
 
-    $result = NULL;
+  $result = NULL;
+  $mysql_connection = NULL;
   try {
     $mysql_connection = getConnection();
     $stmt = $mysql_connection->prepare("INSERT INTO rsvp (email) VALUES (:email)");
@@ -99,13 +126,20 @@ $app->post('/rsvp', function() use($app) {
     return;
   }
 
+  $created_id = $mysql_connection->lastInsertId();
+  $response_body = json_encode(array(
+    "email" => $email,
+    "id" => $created_id
+  ));
+
   $app->response->setStatus(200);
-  $response_body = json_encode(array("created" => $email));
   $app->response->setBody($response_body);
 });
 
 $app->get('/tweets/:query', function ($query) { 
   loadEnv();
+  $app->response->headers->set('Content-Type', 'application/json');
+
   $client = new Client();
   $auth_header = getAuthHeader();
   $api_home = "https://api.twitter.com";
