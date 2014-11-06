@@ -12,7 +12,7 @@
   li.registry
     background: adjust-hue(lighten($dark-color, 10), 45)
     border-bottom: 1px solid adjust-hue(lighten($dark-color, 15), 45)
-    height: 180px
+    height: 33.33%
     position: relative
     width: 100%
     display: block
@@ -31,41 +31,49 @@
       position: relative
       height: 100%
       text-align: center
+      display: table
+      margin: 0 auto
 
     .registry-link
       +transition(color 500ms ease)
-      display: inline
       font-size: 70px
-      line-height: 180px
-      position: relative
+      display: table-cell
+      vertical-align: middle
       text-decoration: none
       color: darken(white, 25)
       text-transform: uppercase
+      text-align: center
 
-      &:before,
-      &:after
-        +transition(all 400ms ease)
-        content: ''
+      .highlight
+        padding: 10px 0 0 0
+        position: relative
         display: block
-        position: absolute
-        width: 0%
-        height: 1px
-        background: darken(white, 20)
 
-      &:before
-        top: 0px
-        right: 0px
+        &:before,
+        &:after
+          +transition(all 400ms ease)
+          content: ''
+          display: block
+          position: absolute
+          width: 0%
+          height: 1px
+          background: darken(white, 20)
 
-      &:after
-        bottom: 0px
-        left: 0px
+        &:before
+          top: 0px
+          right: 0px
+
+        &:after
+          bottom: 0px
+          left: 0px
 
       &:hover
         color: darken(white, 15)
 
-        &:before,
-        &:after
-          width: 100%
+        .highlight
+          &:before,
+          &:after
+            width: 100%
 
     &:hover
       .background-image

@@ -39,7 +39,7 @@ ct.directive 'cBridalMap', ['GOOGLE', '$timeout', (GOOGLE, $timeout) ->
       $scope.pulldown = () ->
         $scope.pulled = !$scope.pulled
 
-      google.maps.event.addListener marker, 'mouseover', over
-      google.maps.event.addListener marker, 'mouseout', out
+      google.maps.event.addListener marker, 'mouseover', resize
+      google.maps.event.addListener marker, 'mouseout', resize
 
 ]
