@@ -10,6 +10,7 @@ ct.directive 'cFeed', ['Viewport', '$timeout', (Viewport, $timeout) ->
       column_gutter = 2
       column_count = 3
       column_heights = new Array column_count
+      @column_count = [0,0,0]
 
       @item_ids = new Array @scope.items.length
       @item_ids[indx] = item.id for item, indx in @scope.items
@@ -45,8 +46,11 @@ ct.directive 'cFeed', ['Viewport', '$timeout', (Viewport, $timeout) ->
         item_width = itemWidth feed_item
         item_height = itemHeight feed_item
         calculated_width = column_width
+        overflowing = item_width > (column_width * 1.25)
+        not_last_colum = target_index < (column_count - 1)
+        okay_to_overlow = not_last_colum && column_heights[target_index+1] <= lowest_height
 
-        if item_width > (column_width * 1.25) and target_index < (column_count - 1)
+        if overflowing and okay_to_overlow
           calculated_width = column_width * 2
           style.width = [calculated_width, 'px'].join ''
           scale = calculated_width / item_width
@@ -72,6 +76,7 @@ ct.directive 'cFeed', ['Viewport', '$timeout', (Viewport, $timeout) ->
         column_width = total_width / column_count
         column_heights[indx] = 0 for c, indx in column_heights
         @scope.styles[indx] = position @scope.items[indx], indx for style, indx in @scope.styles
+        @column_heights = column_heights
         initialized
 
       @scope.$on 'viewswap:complete', initialize
@@ -87,5 +92,10 @@ ct.directive 'cFeed', ['Viewport', '$timeout', (Viewport, $timeout) ->
       items: '='
     link: ($scope, $element, $attrs, $controller) ->
       feed_controller = $controller
+
+      $scope.listStyle = () ->
+        max_height = Math.max.apply null, feed_controller.column_heights
+        style =
+          height: [max_height, 'px'].join ''
 
 ]
