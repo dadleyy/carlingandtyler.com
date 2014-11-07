@@ -1,0 +1,47 @@
+.menu.view
+  background: #dfdfdf
+  overflow-y: scroll
+
+  .inner-view
+    padding: 20px 10px 40px 10px
+
+  .title
+    font-size: 60px
+    color: lighten(black, 0)
+    text-transform: uppercase
+    margin: 0 0 30px 0
+    width: 300px
+    text-align: right
+
+  .menu-items
+    +clearfix
+    display: block
+
+    dl
+      +clearfix
+      display: block
+      margin: 0 0 20px 0
+      border-bottom: 1px solid lighten(black, 75)
+      padding: 0 0 20px 0
+
+      &:last-child
+        border-bottom: none
+    
+    dt
+      font-size: 45px
+      color: lighten(black, 50)
+      text-transform: uppercase
+      float: left
+      margin: 0 20px 0 0
+      width: 300px
+      text-align: right
+
+    dd
+      font-size: 24px
+      color: lighten(black, 20)
+      overflow: hidden
+      height: auto
+
+    ul
+      li
+        margin: 0 0 5px 0
