@@ -6,7 +6,7 @@ ct.directive 'cBridalMap', ['GOOGLE', '$timeout', (GOOGLE, $timeout) ->
 
   map_config =
     center: position
-    zoom: 10
+    zoom: 8
     mapTypeId: google.maps.MapTypeId.ROADMAP
     styles: map_style
     disableDefaultUI: true
