@@ -1,7 +1,38 @@
 .intro(data-stage="{{stage}}")
   .background
-  .text
-    .title.script
-      h1.large Carling 
-      h1.middle.large &amp;
-      h1.large Ty
+  .card-container
+    .card-cell
+      .card-inner
+        .card-border
+          span.borders
+          .wedding-date.crooked
+            h1.label.script wedding
+            .month
+              h2.serif.display.regular 6
+            .day
+              h2.serif.display.bold 26
+          .shower-date.crooked
+            h1.label.script shower
+            .month
+              h2.serif.display.regular 5
+            .day
+              h2.serif.display.bold 25
+          .title.script
+            h1.large Carling<i>&amp;</i>Tyler
+          .info-text.grunge
+            h2.bridal-shower The Bridal Shower
+          .links.grunge
+            table.top
+              tr
+                td
+                  a.grunge.nav-link.rsvp(href="/rsvp") rsvp
+                td
+                  a.grunge.nav-link.registries(href="/registries") registries
+                td
+                  a.grunge.nav-link.menu(href="/menu") menu
+            table.bottom
+              tr
+                td
+                  a.nav-link.directions(href="/location") directions
+                td
+                  a.nav-link.feed(href="/feed") pictures
