@@ -1,162 +1,102 @@
 .home.view
   +clearfix
   display: block
+  background: white
+  position: relative
 
-  .map,
-  .background
+  .bottom-section,
+  .top-section
     position: relative
-    height: 100%
+    display: block
+    width: 80%
+    margin: 40px auto
+    +calc("height", "100% - 300px")
 
-    .poetry
-      position: absolute
-      top: 20px
-      left: 20px
-
-      .first, .second
-        display: block
-        font-size: 60px
-        color: white
-
-      .second
-        margin: -10px 0 0 120px
-
-    .wedding-date
-      +clearfix
-      position: absolute
-      right: 20px
-      bottom: 20px
-      text-align: right
-      color: white
-      text-shadow: none
-
-      .month, .day
-        +transform(rotate(45deg))
-        position: absolute
-        overflow: visible
-        display: block
-        float: left
-        width: 80px
-        height: 80px
-        left: -80px
-        top: -80px
-
-        &.month
-          left: -140px
-          top: -100px
-          height: 104px
-          clip: rect(-38px, 75px, 100px, 0px)
-
-          h2.serif
-            font-size: 100px
-            margin-top: 5px
-          
-          &:after
-            content: ""
-            display: block
-            background: white
-            position: absolute
-            height: 128%
-            width: 1px
-            left: 74px
-            bottom: 0px
-
-        &.day
-          clip: rect(0px, 100px, 100px, 26px)
-
-          h2.serif
-            margin-top: 10px
-
-        h2.serif
-          +transform(rotate(-45deg))
-          display: block
-          font-size: 80px
-          width: 80px
-          height: 80px
-
-      .date
-        font-size: 60px
-
-      .large
-        position: relative
-        font-size: 80px
-        &:after
-          +transform(rotate(45deg))
-          content: ''
-          width: 1px
-          height: 20px
-          display: block
-          background: white
-          position: absolute
-          left: 0px
-          top: 0px
-
-  .left-side
-    +transition(width 200ms ease)
+  .info-tabs
+    position: absolute
+    top: -30px
+    left: -110px
+    height: 70px
+    width: 360px
     z-index: 3
-    float: left
-    width: 180px
-    height: 100%
-
-    .instructions
-      +transition(height 500ms ease)
-      width: 400px
-      height: 0px
-
-    .pull-down .icon
-      +transition(opacity 500ms ease)
-      opacity: 0.0
-
-    &:hover
-      width: 400px
-
-      .pull-down .icon
-        opacity: 1.0
-
-      .instructions.viewing
-        border-top: 1px solid darken($off-white-color, 40)
-        height: 100px
-
-  .map
-    z-index: 4
-    background: darken($dark-color, 10)
-    height: 80%
-
-  .text
-    position: relative
-    z-index: 3
-    background: $off-white-color
-    border-top: 1px solid darken($off-white-color, 40)
-    height: 20%
-    text-align: center
-    padding: 35px 0
-
-    h1.display
-      font-size: 20px
-      margin: 0 0 5px 0
-      text-transform: uppercase
-      color: darken($off-white-color, 60)
-
-    p.addr
-      color: darken($off-white-color, 40)
+    border-radius: 2px
+    border: 5px solid lighten(black, 30)
+    background: white
+    box-sizing: content-box
 
     &:after
-      +transform(rotate(45deg))
       content: ''
       display: block
-      width: 10px
-      height: 10px
+      width: 5px
+      height: 100%
       position: absolute
-      top: -5px
       left: 50%
-      margin-left: -5px
-      background: darken($off-white-color, 40)
+      margin: 0 0 0 -3px
+      top: 0px
+      background: black
 
-  .background
-    +filter(grayscale(100%))
-    z-index: 4
-    overflow: hidden
-    background-image: url(/images/bg1.jpg)
-    box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75)
-    border-left: 1px solid rgba(255, 255, 255, 0.25)
-    background-size: cover
-    background-position: center center
+    dl
+      display: block
+      float: left
+      height: 70px
+      width: 50%
+
+    dt
+      font-size: 12px
+      line-height: 12px
+      text-align: left
+      margin: 5px
+      height: 12px
+
+    dd
+      text-align: center
+      font-size: 16px
+      display: table
+      +calc("height", "100% - 22px")
+      width: 100%
+
+      .text
+        display: table-cell
+        vertical-align: middle
+        text-align: center
+
+    .location dd p
+      font-size: 24px
+
+    .address dd p:last-child
+      font-size: 12px
+
+  .bridal-map
+    z-index: 2
+    height: 100%
+    border-radius: 2px
+    border: 5px solid lighten(black, 30)
+    width: 100%
+    margin: 0 auto
+
+  .bottom-section
+    +outer-container
+    width: 80%
+    height: 260px
+
+    .section-label
+      color: darken(white, 40)
+      margin: 0 0 20px 0
+
+    .person
+      +span-columns(6)
+
+      h1
+        font-size: 30px
+        color: darken(white, 70)
+        margin: 0 0 15px 0
+
+      ul.info
+        list-style: none
+        color: darken(white, 60)
+        margin: 0
+        padding: 0
+
+        li
+          margin: 0 0 10px 0
+          padding: 0
