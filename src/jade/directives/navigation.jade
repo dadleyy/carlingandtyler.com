@@ -1,16 +1,18 @@
-.navigation
-  .top
+.navigation(ng-class="{open: open}")
+  span.cover(ng-class="{block: cover_block}")
+  button.opener(ng-click="toggle()")
+    i.icon.ion.more
   .middle
-    ul.links
-      li.location(ng-class="{active: current_location === 'location'}")
-        a.icon.ion.location(href="/location" title="location")
-      li.registries(ng-class="{active: current_location === 'registries'}")
-        a.icon.ion.cart(href="/registries" title="registries")
-      li.registries(ng-class="{active: current_location === 'rsvp'}")
-        a.icon.ion.bookmarks(href="/rsvp" title="rsvp")
-      li.menu(ng-class="{active: current_location === 'menu'}")
-        a.icon.ion.fork(href="/menu" title="menu")
-  .bottom
-    ul.links
-      li.twitter(ng-class="{active: current_location === 'feed'}")
-        a.ion.icon.camera(href="/feed" title="feed")
+    .middle-inner
+      ul.links.top
+        li.location(ng-class="{active: current_location === 'location'}")
+          a.icon.ion.location(href="/location" title="location" ng-click="open = false")
+        li.registries(ng-class="{active: current_location === 'registries'}")
+          a.icon.ion.cart(href="/registries" title="registries" ng-click="open = false")
+      ul.links.bottom
+        li.registries(ng-class="{active: current_location === 'rsvp'}")
+          a.icon.ion.bookmarks(href="/rsvp" title="rsvp" ng-click="open = false")
+        li.menu(ng-class="{active: current_location === 'menu'}")
+          a.icon.ion.fork(href="/menu" title="menu" ng-click="open = false")
+        li.twitter(ng-class="{active: current_location === 'feed'}")
+          a.ion.icon.camera(href="/feed" title="feed" ng-click="open = false")

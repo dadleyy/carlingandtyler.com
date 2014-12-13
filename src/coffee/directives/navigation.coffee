@@ -1,4 +1,4 @@
-ct.directive 'cNavigation', ['$rootScope', ($rootScope) ->
+ct.directive 'cNavigation', ['$rootScope', '$timeout', ($rootScope, $timeout) ->
 
   cNavigation =
     replace: true
@@ -6,6 +6,19 @@ ct.directive 'cNavigation', ['$rootScope', ($rootScope) ->
     require: '^cBodyManager'
     link: ($scope, $element, $attrs, $controller) ->
       $scope.current_location = false
+      $scope.open = false
+      $scope.cover_block = false
+
+      $scope.toggle = () ->
+        $scope.open = !$scope.open
+
+        close = () ->
+          $scope.cover_block = false
+
+        if $scope.open
+          $scope.cover_block = true
+        else
+          $timeout close, 500
 
       success = (evt, route_info) ->
         if route_info.$$route
