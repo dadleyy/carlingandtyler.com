@@ -17,18 +17,13 @@ body, html, .whole, [ng-view], [c-body-manager]
 
   .navigation
     +transition(all 500ms ease)
-    +transform(translateX(-60px))
-    width: 0px
-    float: left
-    height: 100%
-    z-index: 4
-    position: relative
+    z-index: 10
+    position: fixed
 
   &.open
     
     .navigation
-      +transform(translateX(0px))
-      width: 60px
+      display: block
 
 .page-content
   overflow: hidden
