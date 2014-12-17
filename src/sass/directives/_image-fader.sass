@@ -1,0 +1,23 @@
+.image-fader
+  display: block
+
+  .image
+    +transition(all 4s ease-in)
+    position: absolute
+    background-size: cover
+    background-position: center center
+    background-repeat: no-repeat
+    width: 100%
+    height: 100%
+    opacity: 0.0
+    z-index: 1
+    left: 0
+    top: 0
+
+    &.previous
+      opacity: 0.0
+      z-index: 1
+
+    &.active
+      z-index: 2
+      opacity: 1.0
