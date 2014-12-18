@@ -1,0 +1,2 @@
+.image-fader
+  .image(ng-repeat="image in images" ng-style="style($index)" ng-class="{active: active_index === $index, previous: (active_index - 1 === $index) || (active_index === 0 && $index === images.length - 1)}")
