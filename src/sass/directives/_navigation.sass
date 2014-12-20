@@ -29,14 +29,16 @@
     &.block
       display: block
 
-  .opener
+  a.home,
+  button.opener
+    box-sizing: content-box
     position: absolute
     z-index: 3
     top: 100%
     left: 50%
     margin-left: -20px
     margin-top: -1px
-    border-radius: 1px
+    border-radius: 2px
     background: darken(white, 5)
     border: 1px solid black
     border-top: none
@@ -46,12 +48,24 @@
     width: 40px
     padding: 0px
     outline: none
+    text-align: center
 
     .icon, .icon:after
       line-height: 20px
       width: 40px
       padding: 0
       height: 20px
+      text-align: center
+
+  a.home
+    top: -23px
+    height: 25px
+    border-radius: 2px 2px 0 0
+    border-bottom: none
+
+    .icon, .icon:after
+      height: 25px
+      line-height: 25px
 
   .middle
     display: block
