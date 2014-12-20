@@ -1,5 +1,7 @@
 .navigation(ng-class="{open: open}")
   span.cover(ng-class="{block: cover_block}")
+  a.home(href="#" title="home" ng-click="goHome($event)")
+    i.icon.ion.home
   button.opener(ng-click="toggle()")
     i.icon.ion.more
   .middle

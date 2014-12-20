@@ -1,4 +1,4 @@
-ct.directive 'cNavigation', ['$rootScope', '$timeout', ($rootScope, $timeout) ->
+ct.directive 'cNavigation', ['$rootScope', '$timeout', '$location', ($rootScope, $timeout, $location) ->
 
   cNavigation =
     replace: true
@@ -19,6 +19,10 @@ ct.directive 'cNavigation', ['$rootScope', '$timeout', ($rootScope, $timeout) ->
           $scope.cover_block = true
         else
           $timeout close, 500
+
+      $scope.goHome = (event) ->
+        $scope.open = false
+        $location.url '/'
 
       success = (evt, route_info) ->
         if route_info.$$route
