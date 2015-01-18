@@ -6,23 +6,25 @@
     padding: 20px 10px 40px 10px
 
   .title
+    +outer-container
     font-size: 60px
     color: lighten(black, 0)
     text-transform: uppercase
-    margin: 0 0 30px 0
-    width: 300px
-    text-align: right
+    text-align: center
+    padding-bottom: 20px
+    margin-bottom: 20px
 
   .menu-items
-    +clearfix
+    +outer-container
     display: block
 
     dl
-      +clearfix
+      +span-columns(6)
       display: block
-      margin: 0 0 20px 0
-      border-bottom: 1px solid lighten(black, 75)
-      padding: 0 0 20px 0
+      margin-bottom: 20px
+
+      &:nth-child(2n + 2)
+        +omega
 
       &:last-child
         border-bottom: none

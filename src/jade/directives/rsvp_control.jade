@@ -1,7 +1,7 @@
 .rsvp-control
   .invalid(ng-if="invalid")
-    p.grunge.invalid-email {{error_msg}}
+    p.display.invalid-email {{error_msg}}
   .input-container(ng-class="{has_saved: saved}")
     input.sans(type="text" ng-disabled="disabled" placeholder="email" ng-model="guest.email" ng-keyup="keywatch($event)")
   .thanks(ng-class="{has_saved: saved}")
-    p.grunge.display thank you!
+    p.script.display thank you!
