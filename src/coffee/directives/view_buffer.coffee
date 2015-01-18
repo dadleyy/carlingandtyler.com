@@ -29,13 +29,10 @@ ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', 
       if garbage_to
         $timeout.cancel garbage_to
 
-      garbage_to = $timeout remove, 1000
+      garbage_to = $timeout remove, 2000
 
     increment()
     swap()
-
-  finish = () ->
-    $rootScope.$broadcast 'viewswap:complete'
 
   swap = () ->
     active_buffer = available_buffers[active_index]
@@ -44,7 +41,10 @@ ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', 
     template = if locals then locals.$template else false
     $element = active_buffer.element
     $scope = active_buffer.scope
-    $scope.state = 2
+
+    finish = () ->
+      $scope.state = 2
+      $rootScope.$broadcast 'viewswap:complete'
 
     if template != false and exists template
       cleanup()
@@ -61,7 +61,7 @@ ct.directive 'cViewBuffer', ['$rootScope', '$route', '$compile', '$controller', 
         $element.children().data '$ngControllerController', new_controller
 
       new_element = link_fn new_scope
-      $timeout finish
+      $timeout finish, 200
       current_scope = new_scope
 
   class ViewBuffer
