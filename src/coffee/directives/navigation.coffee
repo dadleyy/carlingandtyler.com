@@ -25,6 +25,7 @@ ct.directive 'cNavigation', ['$rootScope', '$timeout', '$location', ($rootScope,
         $location.url '/'
 
       success = (evt, route_info) ->
+        $scope.cover_block = false
         if route_info.$$route
           $scope.current_location = route_info.$$route.name
 
