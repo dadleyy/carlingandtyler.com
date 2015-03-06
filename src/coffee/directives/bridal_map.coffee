@@ -1,4 +1,4 @@
-ct.directive 'cBridalMap', ['GOOGLE', '$timeout', (GOOGLE, $timeout) ->
+ct.directive 'cBridalMap', ['GOOGLE', '$timeout', 'Viewport', (GOOGLE, $timeout, Viewport) ->
   
   map_style = GOOGLE.map_style
 
@@ -26,5 +26,10 @@ ct.directive 'cBridalMap', ['GOOGLE', '$timeout', (GOOGLE, $timeout) ->
 
       resize = () ->
         google.maps.event.trigger map, 'resize'
+        map.panTo position
+
+      $timeout resize, 300
+
+      Viewport.addListener resize
 
 ]
