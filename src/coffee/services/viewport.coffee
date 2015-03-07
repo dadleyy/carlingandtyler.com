@@ -22,6 +22,7 @@ ct.service 'Viewport', ['$window', '$rootScope', 'Loop', ($window, $rootScope, L
     $rootScope.$digest()
 
   Viewport =
+
     addListener: (fn) ->
       listeners.push fn
       fn $window.innerWidth, $window.innerHeight
