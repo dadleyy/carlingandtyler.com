@@ -116,15 +116,15 @@ $app->post('/rsvp', function() use($app) {
     return;
   }
 
-  $date_time = date(DATE_ISO8601);
-
   $result = NULL;
   $mysql_connection = NULL;
+
   try {
     $mysql_connection = getConnection();
     $stmt = $mysql_connection->prepare("INSERT INTO rsvp (attending, email, createdAt) VALUES (:attending, :email, NOW())");
     $stmt->bindParam('email', $email);
-    $stmt->bindParam('attending', intval($attending));
+    $is_attending = intval($attending);
+    $stmt->bindParam('attending', $is_attending);
     $stmt->execute();
   } catch(Exception $e) {
     $app->response->setStatus(422);
