@@ -2,6 +2,10 @@
   .invalid(ng-if="invalid")
     p.display.invalid-email {{error_msg}}
   .input-container(ng-class="{has_saved: saved}")
-    input.sans(type="text" ng-disabled="disabled" placeholder="email" ng-model="guest.email" ng-keyup="keywatch($event)")
+    .text-container
+      input.sans(type="text" ng-disabled="disabled" placeholder="email" ng-model="guest.email" ng-keyup="keywatch($event)")
+    .action-container.button-group
+      button.calibri.light(ng-click="attempt(true)") attending
+      button.calibri.light.gray(ng-click="attempt(false)") can't make it
   .thanks(ng-class="{has_saved: saved}")
     p.script.display thank you!

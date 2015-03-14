@@ -8,6 +8,7 @@ use \GuzzleHttp\Exception\ClientException;
 
 function loadEnv() {
   $env_path = __DIR__ . '/../.env';
+  date_default_timezone_set("America/New_York");
   $lines = file($env_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
   foreach($lines as $line) {
     if(strpos($line, '=') !== false) {
@@ -70,7 +71,7 @@ $app->get('/rsvp', function() use($app) {
   $results = NULL;
   try {
     $mysql_connection = getConnection();
-    $stmt = $mysql_connection->prepare("SELECT id, email from rsvp");
+    $stmt = $mysql_connection->prepare("SELECT id, email, attending, createdAt from rsvp");
     $stmt->execute();
     $results = $stmt->fetchAll();
   } catch(Exception $e) {
@@ -83,7 +84,8 @@ $app->get('/rsvp', function() use($app) {
   $cleaned = array();
   foreach($results as $result) {
     $cleaned[] = array(
-      "email" => $result['email'],
+      "created_at" => $result['createdAt'],
+      "attending" => $result['attending'],
       "id" => $result['id']
     );
   }
@@ -97,11 +99,13 @@ $app->post('/rsvp', function() use($app) {
   $app->response->headers->set('Content-Type', 'application/json');
 
   $email = $app->request->post('email');
+  $attending = $app->request->post('attending');
   $body = $app->request->getBody();
 
   if(!$email) {
     $decoded = json_decode($body, true);
     $email = $decoded['email'];
+    $attending = $decoded['attending'];
   }
 
   $is_valid = filter_var($email, FILTER_VALIDATE_EMAIL);
@@ -112,12 +116,15 @@ $app->post('/rsvp', function() use($app) {
     return;
   }
 
+  $date_time = date(DATE_ISO8601);
+
   $result = NULL;
   $mysql_connection = NULL;
   try {
     $mysql_connection = getConnection();
-    $stmt = $mysql_connection->prepare("INSERT INTO rsvp (email) VALUES (:email)");
+    $stmt = $mysql_connection->prepare("INSERT INTO rsvp (attending, email, createdAt) VALUES (:attending, :email, NOW())");
     $stmt->bindParam('email', $email);
+    $stmt->bindParam('attending', intval($attending));
     $stmt->execute();
   } catch(Exception $e) {
     $app->response->setStatus(422);

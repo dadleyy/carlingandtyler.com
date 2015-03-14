@@ -23,7 +23,7 @@ ct.directive 'cRsvpControl', ['$http', '$window', 'URLS', ($http, $window, URLS)
 
       api_route = [URLS.api, 'rsvp'].join '/'
 
-      submit = () ->
+      submit = (is_attending) ->
         $scope.disabled = true
         email_addr = $scope.guest.email
         valid = /([\w\.\-_]+)?\w+@[\w\-\_]+(\.\w+){1,}/.test email_addr
@@ -33,7 +33,7 @@ ct.directive 'cRsvpControl', ['$http', '$window', 'URLS', ($http, $window, URLS)
           $scope.invalid = true
           $scope.error_msg = 'please enter a valid email'
         else
-          save(email_addr)
+          save email_addr, is_attending
 
       finish = (response) ->
         $window.localStorage.setItem 'rsvpd', 'yes'
@@ -45,16 +45,17 @@ ct.directive 'cRsvpControl', ['$http', '$window', 'URLS', ($http, $window, URLS)
         $scope.invalid = true
         $scope.disabled = false
 
-      save = (addr) ->
+      save = (addr, is_attending) ->
         promise = $http.post api_route,
           email: addr
+          attending: if is_attending then 1 else 0
+
         promise.then finish, fail
+
+      $scope.attempt = (attending_flag) ->
+        submit attending_flag
 
       $scope.keywatch = (event) ->
         $scope.invalid = false
-        key_code = event.keyCode
-        if key_code == 13
-          submit()
-
 
 ]
